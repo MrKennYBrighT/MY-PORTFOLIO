@@ -24,7 +24,7 @@ function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 bg-white dark:bg-slate-800 shadow-md">
-      <div className="max-w-7xl mx-auto px-4 py-3 relative">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between relative">
         {/* Logo Section */}
         <div className="flex items-center space-x-1 md:space-x-3">
           <img
@@ -32,10 +32,26 @@ function Navbar() {
             alt="Portfolio Logo"
             className="w-8 h-8 md:w-10 md:h-10 object-cover"
           />
-          <h1 className="text-[1.1rem] sm:text-[1.25rem] md:text-3xl font-bold text-indigo-600 tracking-tight leading-tight whitespace-nowrap max-w-[200px]">
+          <h1 className="text-[1.1rem] sm:text-[1.25rem] md:text-3xl font-bold text-indigo-600 tracking-tight leading-tight whitespace-nowrap">
             My Portfolio
           </h1>
         </div>
+
+        {/* Desktop Nav */}
+        <ul className="hidden md:flex space-x-6">
+          {navItems.map(item => (
+            <li key={item.name}>
+              <Link
+                to={item.path}
+                className={`relative transition duration-300 ease-in-out text-gray-700 dark:text-gray-200 hover:text-sky-500 ${
+                  location.pathname === item.path ? 'text-sky-500 font-semibold' : ''
+                } before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-[2px] before:bg-sky-500 before:transition-all before:duration-300 hover:before:w-full`}
+              >
+                {item.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
 
         {/* Hamburger Icon */}
         <button
@@ -67,22 +83,6 @@ function Navbar() {
             )}
           </svg>
         </button>
-
-        {/* Desktop Nav */}
-        <ul className="hidden md:flex space-x-6">
-          {navItems.map(item => (
-            <li key={item.name}>
-              <Link
-                to={item.path}
-                className={`relative transition duration-300 ease-in-out text-gray-700 dark:text-gray-200 hover:text-sky-500 ${
-                  location.pathname === item.path ? 'text-sky-500 font-semibold' : ''
-                } before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-[2px] before:bg-sky-500 before:transition-all before:duration-300 hover:before:w-full`}
-              >
-                {item.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
       </div>
 
       {/* Animated Mobile Overlay */}
