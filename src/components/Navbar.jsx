@@ -14,7 +14,6 @@ function Navbar() {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Auto-close on scroll
   useEffect(() => {
     const handleScroll = () => {
       if (menuOpen) setMenuOpen(false);
@@ -25,20 +24,22 @@ function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 bg-white dark:bg-slate-800 shadow-md">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-4 py-3 relative">
         {/* Logo Section */}
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-1 md:space-x-3">
           <img
             src="/portfolio.png"
             alt="Portfolio Logo"
-            className="w-15 h-15 object-cover"
+            className="w-8 h-8 md:w-10 md:h-10 object-cover"
           />
-          <h1 className="text-xl font-bold text-indigo-600">My Portfolio</h1>
+          <h1 className="text-[1.1rem] sm:text-[1.25rem] md:text-3xl font-bold text-indigo-600 tracking-tight leading-tight whitespace-nowrap max-w-[200px]">
+            My Portfolio
+          </h1>
         </div>
 
         {/* Hamburger Icon */}
         <button
-          className="md:hidden text-gray-700 dark:text-gray-200 focus:outline-none"
+          className="absolute right-0 top-1/2 -translate-y-1/2 md:hidden text-gray-700 dark:text-gray-200 focus:outline-none"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
