@@ -115,7 +115,7 @@ function Contact() {
                         value={formData[field]}
                         onChange={handleChange}
                         required={field !== 'subject'}
-                        className="w-full p-3 border rounded dark:bg-slate-800 dark:text-white"
+                        className="w-full p-3 border rounded dark:bg-slate-800 dark:text-white text-black"
                       />
                       {errors[field] && (
                         <p className="text-red-500 text-sm mt-1">{errors[field]}</p>
@@ -129,7 +129,7 @@ function Contact() {
                         value={formData.message}
                         onChange={handleChange}
                         required
-                        className="w-full p-3 border rounded h-32 resize-none dark:bg-slate-800 dark:text-white"
+                        className="w-full p-3 border rounded h-32 resize-none dark:bg-slate-800 dark:text-white text-black"
                       />
                       {errors.message && (
                         <p className="text-red-500 text-sm mt-1">{errors.message}</p>
