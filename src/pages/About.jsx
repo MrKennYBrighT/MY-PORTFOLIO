@@ -21,7 +21,7 @@ function About() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          Hi, I’m Kenny—a passionate front-end developer based in Nigeria. 
+          Hi, I’m Kehinde Olorunda —a passionate front-end developer based in Nigeria. 
           I specialize in crafting responsive, accessible, and visually engaging 
           web interfaces using modern tools like React, Tailwind CSS, and Firebase.
         </motion.p>
