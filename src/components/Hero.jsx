@@ -68,36 +68,56 @@ function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.6 }}
       >
-        {/* Glowing View Projects Button */}
-        <motion.div whileHover={{ scale: 1.05 }} className="relative">
+        {/* View Projects Button */}
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <Link
             to="/projects"
-            className="relative inline-block px-6 py-2 rounded shadow transition overflow-hidden"
+            className="inline-block relative px-6 py-2 rounded-lg shadow transition group"
           >
-            <span className="absolute inset-0 bg-indigo-600 rounded blur-md opacity-30 group-hover:opacity-50 transition duration-300 animate-pulse"></span>
+            <span className="absolute inset-0 bg-indigo-600 rounded-lg blur-md opacity-30 group-hover:opacity-50 transition duration-300 animate-pulse"></span>
             <span className="relative z-10 text-white font-semibold tracking-wide animate-text-glow">
               View Projects
             </span>
-            <span className="absolute inset-0 rounded bg-indigo-700 opacity-0 hover:opacity-10 transition"></span>
+            <span className="absolute inset-0 rounded-lg bg-indigo-700 opacity-0 group-hover:opacity-10 transition"></span>
           </Link>
         </motion.div>
 
-        {/* Contact Me with Ripple */}
-        <motion.div whileHover={{ scale: 1.05 }}>
+        {/* Contact Me Button */}
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <div
             ref={rippleContainerRef}
             onClick={createRipple}
-            className="relative overflow-hidden rounded"
+            className="relative overflow-hidden rounded-lg shadow transition group px-6 py-2"
           >
+            <span className="absolute inset-0 bg-indigo-600 rounded-lg blur-md opacity-30 group-hover:opacity-50 transition duration-300 animate-pulse"></span>
             <Link
               to="/contact"
-              className="border border-indigo-600 text-indigo-600 px-6 py-2 rounded hover:bg-indigo-50 transition relative z-10"
+              className="relative z-10 text-white font-semibold tracking-wide animate-text-glow"
             >
               Contact Me
             </Link>
+            <span className="absolute inset-0 rounded-lg bg-indigo-700 opacity-0 group-hover:opacity-10 transition"></span>
           </div>
         </motion.div>
       </motion.div>
+
+      {/* Custom animation class */}
+      <style jsx>{`
+        @keyframes textGlow {
+          0% {
+            text-shadow: 0 0 6px #6366f1, 0 0 12px #6366f1;
+          }
+          50% {
+            text-shadow: 0 0 12px #818cf8, 0 0 24px #818cf8;
+          }
+          100% {
+            text-shadow: 0 0 6px #6366f1, 0 0 12px #6366f1;
+          }
+        }
+        .animate-text-glow {
+          animation: textGlow 2s ease-in-out infinite;
+        }
+      `}</style>
     </section>
   );
 }
