@@ -68,12 +68,17 @@ function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.6 }}
       >
-        <motion.div whileHover={{ scale: 1.05 }}>
+        {/* Glowing View Projects Button */}
+        <motion.div whileHover={{ scale: 1.05 }} className="relative">
           <Link
             to="/projects"
-            className="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700 transition"
+            className="relative inline-block px-6 py-2 rounded shadow transition overflow-hidden"
           >
-            View Projects
+            <span className="absolute inset-0 bg-indigo-600 rounded blur-md opacity-30 group-hover:opacity-50 transition duration-300 animate-pulse"></span>
+            <span className="relative z-10 text-white font-semibold tracking-wide animate-text-glow">
+              View Projects
+            </span>
+            <span className="absolute inset-0 rounded bg-indigo-700 opacity-0 hover:opacity-10 transition"></span>
           </Link>
         </motion.div>
 
