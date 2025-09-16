@@ -1,7 +1,27 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useRef } from 'react';
 
 function Hero() {
+  const rippleContainerRef = useRef(null);
+
+  const createRipple = (e) => {
+    const container = rippleContainerRef.current;
+    const circle = document.createElement('span');
+    const diameter = Math.max(container.clientWidth, container.clientHeight);
+    const radius = diameter / 2;
+
+    circle.style.width = circle.style.height = `${diameter}px`;
+    circle.style.left = `${e.clientX - container.getBoundingClientRect().left - radius}px`;
+    circle.style.top = `${e.clientY - container.getBoundingClientRect().top - radius}px`;
+    circle.classList.add('ripple');
+
+    const ripple = container.getElementsByClassName('ripple')[0];
+    if (ripple) ripple.remove();
+
+    container.appendChild(circle);
+  };
+
   return (
     <section className="flex flex-col items-center justify-center text-center py-20 px-4 bg-white dark:bg-slate-900 transition-colors duration-300">
       
@@ -56,13 +76,21 @@ function Hero() {
             View Projects
           </Link>
         </motion.div>
+
+        {/* Contact Me with Ripple */}
         <motion.div whileHover={{ scale: 1.05 }}>
-          <Link
-            to="/contact"
-            className="border border-indigo-600 text-indigo-600 px-6 py-2 rounded hover:bg-indigo-50 transition"
+          <div
+            ref={rippleContainerRef}
+            onClick={createRipple}
+            className="relative overflow-hidden rounded"
           >
-            Contact Me
-          </Link>
+            <Link
+              to="/contact"
+              className="border border-indigo-600 text-indigo-600 px-6 py-2 rounded hover:bg-indigo-50 transition relative z-10"
+            >
+              Contact Me
+            </Link>
+          </div>
         </motion.div>
       </motion.div>
     </section>

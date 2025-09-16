@@ -80,3 +80,36 @@ button:focus-visible {
     color: #213547;
   }
 }
+@layer utilities {
+  @keyframes textGlow {
+    0% {
+      text-shadow: 0 0 6px #6366f1, 0 0 12px #6366f1;
+    }
+    50% {
+      text-shadow: 0 0 12px #818cf8, 0 0 24px #818cf8;
+    }
+    100% {
+      text-shadow: 0 0 6px #6366f1, 0 0 12px #6366f1;
+    }
+  }
+
+  .animate-text-glow {
+    animation: textGlow 2s ease-in-out infinite;
+  }
+
+  @keyframes borderGlow {
+    0% {
+      box-shadow: 0 0 4px #6366f1;
+    }
+    50% {
+      box-shadow: 0 0 12px #818cf8;
+    }
+    100% {
+      box-shadow: 0 0 4px #6366f1;
+    }
+  }
+
+  .animate-border-glow {
+    animation: borderGlow 2s ease-in-out infinite;
+  }
+}
