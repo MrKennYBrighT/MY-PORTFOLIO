@@ -1,27 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { useRef } from 'react';
 
 function Hero() {
-  const rippleContainerRef = useRef(null);
-
-  const createRipple = (e) => {
-    const container = rippleContainerRef.current;
-    const circle = document.createElement('span');
-    const diameter = Math.max(container.clientWidth, container.clientHeight);
-    const radius = diameter / 2;
-
-    circle.style.width = circle.style.height = `${diameter}px`;
-    circle.style.left = `${e.clientX - container.getBoundingClientRect().left - radius}px`;
-    circle.style.top = `${e.clientY - container.getBoundingClientRect().top - radius}px`;
-    circle.classList.add('ripple');
-
-    const ripple = container.getElementsByClassName('ripple')[0];
-    if (ripple) ripple.remove();
-
-    container.appendChild(circle);
-  };
-
   return (
     <section className="flex flex-col items-center justify-center text-center py-20 px-4 bg-white dark:bg-slate-900 transition-colors duration-300">
       
@@ -82,22 +62,18 @@ function Hero() {
           </Link>
         </motion.div>
 
-        {/* Contact Me Button */}
+        {/* Contact Me Button — now identical to View Projects */}
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          <div
-            ref={rippleContainerRef}
-            onClick={createRipple}
-            className="relative overflow-hidden rounded-lg shadow transition group px-6 py-2"
+          <Link
+            to="/contact"
+            className="inline-block relative px-6 py-2 rounded-lg shadow transition group"
           >
             <span className="absolute inset-0 bg-indigo-600 rounded-lg blur-md opacity-30 group-hover:opacity-50 transition duration-300 animate-pulse"></span>
-            <Link
-              to="/contact"
-              className="relative z-10 text-white font-semibold tracking-wide animate-text-glow"
-            >
+            <span className="relative z-10 text-white font-semibold tracking-wide animate-text-glow">
               Contact Me
-            </Link>
+            </span>
             <span className="absolute inset-0 rounded-lg bg-indigo-700 opacity-0 group-hover:opacity-10 transition"></span>
-          </div>
+          </Link>
         </motion.div>
       </motion.div>
 
