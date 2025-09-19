@@ -1,7 +1,7 @@
 // src/pages/Projects.jsx
 import { motion } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import Layout from '../components/Layout';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
 const projects = [
   {
@@ -9,49 +9,49 @@ const projects = [
     description:
       'A lightweight calculator built with JavaScript, designed for speed and simplicity. Handles basic arithmetic and keyboard input.',
     tech: ['HTML', 'CSS', 'JavaScript'],
-    github: 'https://github.com/MrKennYBrighT/Simple-Calculator',
-    demo: 'https://simple-calculator-sigma-two.vercel.app/',
+    code: '#',
+    demo: '#',
   },
   {
     title: 'PopcornPages',
     description:
       'A dynamic movie database app that fetches real-time data from TMDB API. Users can browse, search, and view trailers.',
     tech: ['React', 'Tailwind CSS', 'TMDB API'],
-    github: 'https://github.com/MrKennYBrighT/PopcornPages',
-    demo: 'http://popcorn-pages.vercel.app/',
+    code: '#',
+    demo: '#',
   },
   {
     title: 'Quiz',
     description:
       'An interactive quiz app with multiple categories and timed questions. Tracks scores and offers instant feedback.',
     tech: ['HTML', 'CSS', 'JavaScript'],
-    github: 'https://github.com/MrKennYBrighT/quiz-platform',
-    demo: 'https://quiz-platform-henna.vercel.app/',
+    code: '#',
+    demo: '#',
   },
   {
     title: 'Music Player',
     description:
       'A sleek music player with playlist support, audio controls, and responsive design. Built for smooth playback and UI polish.',
     tech: ['React', 'CSS Modules', 'JavaScript'],
-    github: 'https://github.com/kenny/music-player',
-    demo: 'https://music-player.vercel.app',
+    code: '#',
+    demo: '#',
   },
   {
     title: 'Weather App',
     description:
       'A responsive weather dashboard that displays current conditions and forecasts using OpenWeather API.',
     tech: ['HTML', 'CSS', 'JavaScript'],
-    github: 'https://github.com/kenny/weather-app',
-    demo: 'https://weather-app.vercel.app',
+    code: '#',
+    demo: '#',
   },
 ];
 
 function Projects() {
   return (
     <Layout>
-      <section className="w-full py-20 px-4">
+      <section className="w-full py-20 px-4 text-center">
         <motion.h2
-          className="text-4xl font-bold text-center text-indigo-600 mb-12"
+          className="text-4xl font-bold text-indigo-600 mb-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -59,52 +59,96 @@ function Projects() {
           Projects
         </motion.h2>
 
-        <div className="space-y-12 max-w-6xl mx-auto">
+        <motion.div
+          className="flex flex-col gap-6 max-w-4xl mx-auto text-left"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.2,
+              },
+            },
+          }}
+        >
           {projects.map((project, index) => (
             <motion.div
-              key={project.title}
-              className="bg-slate-100 dark:bg-slate-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              key={index}
+              className="bg-gradient-to-r from-indigo-500 to-purple-500 p-[1px] rounded-lg"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
             >
-              <h3 className="text-2xl font-semibold text-slate-800 dark:text-white mb-2">
-                {project.title}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-300 mb-4">
-                {project.description}
-              </p>
-              <ul className="flex flex-wrap gap-2 mb-4">
-                {project.tech.map((tech, i) => (
-                  <li
-                    key={i}
-                    className="bg-indigo-100 dark:bg-indigo-700 text-indigo-700 dark:text-white px-2 py-1 rounded text-sm"
+              <div className="bg-slate-100 dark:bg-slate-800 p-6 rounded-lg hover:shadow-xl hover:shadow-indigo-500/20 transition-shadow">
+                <h3 className="text-xl font-semibold text-indigo-600 mb-2">
+                  {project.title}
+                </h3>
+                <p className="text-slate-600 dark:text-slate-300 mb-4">
+                  {project.description}
+                </p>
+
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tech.map((tech, i) => (
+                    <motion.span
+                      key={i}
+                      className="bg-indigo-100 dark:bg-indigo-800 text-indigo-600 dark:text-indigo-200 px-3 py-1 rounded-full text-sm font-medium"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ type: 'spring', stiffness: 300 }}
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                </div>
+
+                {/* Links */}
+                <div className="flex gap-4 mt-2">
+                  <motion.a
+                    href={project.code}
+                    className="flex items-center gap-2 text-indigo-600 hover:underline font-semibold"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    {tech}
-                  </li>
-                ))}
-              </ul>
-              <div className="flex gap-4">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-700 dark:text-slate-200 hover:text-indigo-500 flex items-center gap-1"
-                >
-                  <FaGithub /> Code
-                </a>
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-700 dark:text-slate-200 hover:text-indigo-500 flex items-center gap-1"
-                >
-                  <FaExternalLinkAlt /> Demo
-                </a>
+                    <FaGithub /> Code
+                  </motion.a>
+                  <motion.a
+                    href={project.demo}
+                    className="flex items-center gap-2 text-indigo-600 hover:underline font-semibold"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: 'spring', stiffness: 300 }}
+                  >
+                    <FaExternalLinkAlt /> Demo
+                  </motion.a>
+                </div>
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
+
+        {/* Custom animation class */}
+        <style jsx>{`
+          @keyframes textGlow {
+            0% {
+              text-shadow: 0 0 6px #6366f1, 0 0 12px #6366f1;
+            }
+            50% {
+              text-shadow: 0 0 12px #818cf8, 0 0 24px #818cf8;
+            }
+            100% {
+              text-shadow: 0 0 6px #6366f1, 0 0 12px #6366f1;
+            }
+          }
+          .animate-text-glow {
+            animation: textGlow 2s ease-in-out infinite;
+          }
+        `}</style>
       </section>
     </Layout>
   );

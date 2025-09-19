@@ -62,7 +62,7 @@ function Hero() {
           </Link>
         </motion.div>
 
-        {/* Contact Me Button — now identical to View Projects */}
+        {/* Contact Me Button */}
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <Link
             to="/contact"
